@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Access-Control-Allow-Origin" content="*">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>喝飲料輸入序號抽大獎</title>
+	<script type="text/javascript" src="./js/jquery-3.3.1.min.js"></script>
+	<style type="text/css">
+		#sugarFreeTeaImg{
+            height: 400px;
+		}
+	</style>
+</head>
+<body>
+	
+    <img id="sugarFreeTeaImg" src="./images/sugarFreeTea.jpeg">
+
+    <input id="inputCouponSerialNumber" type="text" name="">
+    <button id="submitButton">送出序號</button>
+
+    <p id="awardStatement"></p>
+
+</body>
+
+<script type="text/javascript">
+
+    var serialNumber;
+
+	$('#submitButton').click(function(){
+		serialNumber = $('#inputCouponSerialNumber').val();
+		sendCouponSerialNumber();
+	});	
+	
+    
+    function sendCouponSerialNumber() {
+		$.ajax({
+			type : 'POST',
+			traditional : true,
+			url : 'http://localhost:8081/lottery',
+			data : {
+				serialNumber : serialNumber
+			},dataType : 'json',
+
+			success : function(result) {
+				console.log(result.awardName)
+				console.log(result.awardNumber)
+				if(result.awardNumber != '0' ){
+					$("#awardStatement").text("恭喜你抽中"+result.awardName+" 兌獎序號為 : "+result.awardNumber)
+				}else{
+					$("#awardStatement").text(result.awardName)
+				}
+			}
+		});
+	};
+</script>
+
+</html>
