@@ -7,20 +7,42 @@
 	<title>喝飲料輸入序號抽大獎</title>
 	<script type="text/javascript" src="./js/jquery-3.3.1.min.js"></script>
 	<style type="text/css">
+        #bodyContainner{
+        	widows: 1280px;
+        	text-align: center;
+        }
+
+        p{
+        	display: inline;
+        }
+
 		#sugarFreeTeaImg{
-            height: 400px;
+            height: 300px;
 		}
+
+		#ps5Img{
+            height: 300px;
+		}
+
 	</style>
 </head>
 <body>
+	<div id="bodyContainner">
 	
+	<h1 style="color: orange;">登入飲料序號抽PS5!? 張張有獎!</h1>
     <img id="sugarFreeTeaImg" src="./images/sugarFreeTea.jpeg">
+    <img id="ps5Img" src="./images/ps5.jpg">
+    
+    <br>
+    <br>
+    <br>
 
-    <input id="inputCouponSerialNumber" type="text" name="">
+    <p>請輸入包裝內序號 : </p><input id="inputCouponSerialNumber" type="text" name="">
     <button id="submitButton">送出序號</button>
 
     <p id="awardStatement"></p>
-
+    
+    </div>
 </body>
 
 <script type="text/javascript">
@@ -50,6 +72,9 @@
 				}else{
 					$("#awardStatement").text(result.awardName)
 				}
+			},
+			error: function (error) { 
+				console.log("ajax error occurred !")
 			}
 		});
 	};
