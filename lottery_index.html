@@ -38,8 +38,10 @@
     <br>
 
     <p>請輸入包裝內序號 : </p><input id="inputCouponSerialNumber" type="text" name="">
-    <button id="submitButton">送出序號</button>
 
+    <button id="submitButton">送出序號</button>
+    <br><br>
+    
     <p id="awardStatement"></p>
     
     </div>
@@ -59,7 +61,7 @@
 		$.ajax({
 			type : 'POST',
 			traditional : true,
-			url : 'http://localhost:8081/lottery',
+			url : 'http://localhost:8082/lottery',
 			data : {
 				serialNumber : serialNumber
 			},dataType : 'json',
